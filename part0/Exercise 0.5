@@ -1,0 +1,19 @@
+``` mermaid
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    User->>Browser: Visits exampleapp/spa
+    Browser->>Server: HTTP GET spa (html)
+    Server-->>Browser: Status code 200 OK (HTML corpus)
+    Browser->>Server: HTTP GET main.css
+    Server-->>Browser: Status code 200 OK
+    Browser->>Server: HTTP GET spa.js (function for createelement)
+    Server-->>Browser: Status code 200 OK
+    Note over Browser: Browser executes JavaScript code
+    Browser->>Server: HTTP GET data.json (All notes including content and date)
+    Server-->>Browser: Status code 200 OK
+    Note over Browser: Browser renders notes using JavaScript
+    Browser->>User: All notes visible for user
+    Note over User,Server: Subsequent interactions handled by JavaScript without page reloads

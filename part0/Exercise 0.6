@@ -1,0 +1,15 @@
+```mermaid
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    User->>Browser: Submits form
+    Note over Browser: Prevents default form submission
+    Browser->>Browser: Updates UI locally
+    Browser->>Server: HTTP POST to /new_note_spa with JSON payload
+    Note over Browser,Server: Content-Type: application/json
+    Server-->>Browser: Status 201 Created, {"message": "note created"}
+    Browser->>Browser: Confirms successful creation to user
+
+    Note over Browser: No page reload occurs

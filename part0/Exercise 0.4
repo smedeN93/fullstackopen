@@ -1,0 +1,25 @@
+```mermaid
+sequenceDiagram
+
+Browser->>Server: HTTP POST /new_note (with form data)
+    Note over Server: Process form data
+Note over Server: Create new note
+Note over Server: Prepare redirect
+Server-->>Browser: HTTP 302 Redirect to /notes
+
+Browser->>Server: HTTP GET /notes (following redirect)
+    Note over Server: Generate HTML with updated notes
+Server-->>Browser: HTTP 200 OK (HTML content)
+
+Browser->>Server: HTTP GET /main.css
+    Server-->>Browser: HTTP 200 OK (CSS content)
+
+Browser->>Server: HTTP GET /main.js
+    Server-->>Browser: HTTP 200 OK (JS content)
+
+Browser->>Server: HTTP GET /data.json
+    Note over Server: Prepare JSON with all notes (including new one)
+Server-->>Browser: HTTP 200 OK (JSON with updated data)
+
+Note over Browser: Browser renders new page
+```
