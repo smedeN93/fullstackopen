@@ -8,6 +8,18 @@ const Button = ({ handleClick }) => {
   )
 }
 
+const votes = []
+
+const copy =  [...votes]
+
+const VoteButton = ({ handleClick }) => {
+  return (
+    <button onClick={handleClick}>
+      Vote
+    </button>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -27,6 +39,14 @@ const App = () => {
       {anecdotes[selected]}
       <br />
       <Button handleClick={() => setSelected(Math.floor(Math.random() * anecdotes.length))} />
+      <VoteButton handleClick={() => {
+        votes[selected] = votes[selected] ? votes[selected] + 1 : 1
+        copy[selected] = votes[selected]
+        console.log(`Anecdote: ${anecdotes[selected]}, Votes: ${votes[selected]}`)
+      }} />
+      <p></p>
+
+
     </div>
   )
 }
