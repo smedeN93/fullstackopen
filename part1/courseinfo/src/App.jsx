@@ -1,27 +1,34 @@
-import Header from "./Header"
-import Content from "./Content"
-import Total from "./Total"
+import { useState } from 'react'
+import Display from './Display'
+import Button from './Button'
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = {
-    name: 'Fundamentals of React',
-    exercises: 10
+
+  const [ counter, setCounter ] = useState(0)
+  console.log('rendering with counter value', counter)
+
+  const increasedByOne = () => {
+    console.log("increasing, value before", counter)
+    setCounter(counter + 1)
   }
-  const part2 = {
-    name: 'Using props to pass data',
-    exercises: 7
+
+
+  const decreasedByOne = () => {
+    console.log("decreasing, value before", counter)
+    setCounter(counter - 1)
   }
-  const part3 = {
-    name: 'State of a component',
-    exercises: 14
+
+  const setToZero = () => {
+    console.log("resetting to zero, value before", counter)
+    setCounter(0)
   }
 
   return (
     <div>
-      <Header course={course} />
-      <Content parts={[part1, part2, part3]}  />
-      <Total exercises={[part1, part2, part3]} />
+      <Display counter={counter} />
+      <Button onClick={increasedByOne} text='plus' />
+      <Button onClick={decreasedByOne} text='minus' />
+      <Button onClick={setToZero} text='zero' />
     </div>
   )
 }
