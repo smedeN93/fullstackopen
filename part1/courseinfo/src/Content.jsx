@@ -4,9 +4,9 @@ import Part from "./Part"
 const Content = (props) => {
     return (
         <div>
-            {props.parts.map((part, index) => (
-                <Part key={index} part={part} />
-            ))}
+            <Part part={props.parts[0]} />
+            <Part part={props.parts[1]} />
+            <Part part={props.parts[2]} />
         </div>
     )
 }

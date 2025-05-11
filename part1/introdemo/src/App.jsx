@@ -15,7 +15,7 @@ const App = () => {
     <div>
       <h1>Greetings</h1>
       <Hello name="George" age={26 + 10} />
-      <Hello name={name} age={age} /> {/* Når man bruger argumenter i JSX, hvor der indgår noget JS, så skal man have dem indrammet i curly braces */ }
+      <Hello name={name} age={age} />
     </div>
   )
 }
