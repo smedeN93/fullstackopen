@@ -1,7 +1,4 @@
-import personService from "../services/persons"
-import useEffect from "react"
-
-const PersonForm = ({ newName, newNumber, persons, handleSubmitName, handleSubmitNumber, submit }) => {
+const PersonForm = ({ newName, newNumber, handleSubmitName, handleSubmitNumber, submit }) => {
     return (
       <form onSubmit={submit}>
         <div>
@@ -11,18 +8,7 @@ const PersonForm = ({ newName, newNumber, persons, handleSubmitName, handleSubmi
           number: <input value={newNumber} onChange={handleSubmitNumber} />
         </div>
         <div>
-          <button 
-          onClick={() => {
-            
-            const existingPerson = personService.getAll().then(response => {
-              console.log(response.number)
-            })
-            console.log(existingPerson)
-            }}
-          type="submit">
-            add
-          
-          </button>
+          <button type="submit">add</button>
         </div>
       </form>
     )

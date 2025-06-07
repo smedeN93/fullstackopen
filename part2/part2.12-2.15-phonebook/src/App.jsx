@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import Filter from './components/Filter'
-import axios from 'axios'
 import personService from "./services/persons"
 
 const App = () => {
@@ -26,10 +25,14 @@ const App = () => {
   const submit = (event) => {
     event.preventDefault()
     
-    const exists = persons.some(person => person.name === newName);
+    const existingPerson = persons.some(person => person.number === newNumber);
     
-    if (exists) {
-      return alert(`${newName} is already added to phonebook`)
+    if (existingPerson && window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+      personService
+      .update(existingPerson.id, newNumber)
+      .then(response => {
+        console.log(response)
+      })
     }
 
     const newPerson = {
