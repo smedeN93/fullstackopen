@@ -1,6 +1,11 @@
 /* FindCountry.css */
-.flag {
+.img_flag {
     width: 200px;  
     margin-top: 20px;
   }
+
+.img_weather {
+    width: 100px;
+    margin-bottom: 20px;
+}
   
