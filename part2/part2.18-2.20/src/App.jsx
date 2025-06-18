@@ -41,7 +41,13 @@ const App = () => {
   )
   console.log(countryByName)
 
-  // Render the main application with country search functionality
+  // Automatically select country when there's exactly one match
+  useEffect(() => {
+    if (countryByName.length === 1) {
+      setSelectedCountry(countryByName[0])
+    }
+  }, [countryByName])
+
   return (
     <div>
       <h1>countries</h1>

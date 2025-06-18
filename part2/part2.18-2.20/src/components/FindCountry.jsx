@@ -33,11 +33,15 @@ const FindCountry = (props) => {
                   <p>Languages: {Object.values(country.languages).join(', ')}</p>
                   <img src={country.flags.png} className="img" />
                   {/* Display weather information for the capital city */}
-                  <h3>Weather in {country.capital} is {weather.current.temp_c}°C</h3>
-                  <img 
-                  src={weather.current.condition.icon} 
-                  className="img_weather"
-                  />
+                  {weather && (
+                    <>
+                      <h3>Weather in {country.capital} is {weather.current.temp_c}°C</h3>
+                      <img 
+                        src={weather.current.condition.icon} 
+                        className="img_weather"
+                      />
+                    </>
+                  )}
                 </div>
               )}
             </div>
@@ -58,11 +62,20 @@ const FindCountry = (props) => {
               <li key={lang}>{lang}</li>
             ))}
           </ul>
-
           <img
             src={countries[0].flags.png}
             className="img"
           />
+          {/* Display weather information for the capital city when there's only one country */}
+          {weather && (
+            <>
+              <h3>Weather in {countries[0].capital} is {weather.current.temp_c}°C</h3>
+              <img 
+                src={weather.current.condition.icon} 
+                className="img_weather"
+              />
+            </>
+          )}
         </div>
       )}
 
