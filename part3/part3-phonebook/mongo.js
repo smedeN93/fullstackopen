@@ -9,7 +9,7 @@ const password = process.argv[2]
 
 const url = `mongodb+srv://admin:${password}@fullstackopen.a1ilcd0.mongodb.net/phonebookApp?retryWrites=true&w=majority&appName=fullstackopen`
 
-mongoose.set('strictQuery',false)
+mongoose.set('strictQuery', false)
 
 mongoose.connect(url)
 
@@ -26,7 +26,7 @@ if (process.argv.length === 5) {
     number: process.argv[4],
   })
 
-  person.save().then(result => {
+  person.save().then(() => {
     console.log(`added ${process.argv[3]} number ${process.argv[4]} to phonebook`)
     mongoose.connection.close()
   })
