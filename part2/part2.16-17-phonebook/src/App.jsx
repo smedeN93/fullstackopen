@@ -62,7 +62,11 @@ const App = () => {
         })
         .catch(error => {
           // Show error message if update fails
-          setNotification({ message: `Information of ${newName} has already been removed from server`, type: 'error' })
+          if (error.response.data.error) {
+            setNotification({ message: error.response.data.error, type: 'error' })
+          } else {
+            setNotification({ message: `Information of ${newName} has already been removed from server`, type: 'error' })
+          }
           setTimeout(() => {
             setNotification({ message: null, type: '' })
           }, 5000)
@@ -93,6 +97,16 @@ const App = () => {
           setNotification({ message: null, type: '' })
         }, 5000)
       })
+      .catch(error => {
+        if (error.response.data.error) {  
+          setNotification({ message: error.response.data.error, type: 'error' })
+        } else {
+          setNotification({ message: `Information of ${newName} has already been removed from server`, type: 'error' })
+        }
+        setTimeout(() => {
+          setNotification({ message: null, type: '' })
+        }, 5000)
+      })
     return
   }
 
@@ -108,6 +122,7 @@ const App = () => {
           }, 5000);
         })
         .catch(error => {
+          console.log(error.response.data.error)
           setNotification({ message: `Information of ${name} has already been removed from server`, type: 'error' });
           setTimeout(() => {
             setNotification({ message: null, type: '' });
